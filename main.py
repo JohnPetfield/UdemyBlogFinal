@@ -51,7 +51,7 @@ class User(UserMixin, db.Model):
 class BlogPost(db.Model):
     __tablename__ = "blog_posts"
     id = db.Column(db.Integer, primary_key=True)
-    #author = db.Column(db.String(250), nullable=False)
+    # author = db.Column(db.String(250), nullable=False)
     title = db.Column(db.String(250), unique=True, nullable=False)
     subtitle = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(250), nullable=False)
@@ -239,7 +239,7 @@ def add_new_post():
 
 
 @admin_only
-@app.route("/delete/<int:comment_id>")
+@app.route("/delete_comment/<int:comment_id>")
 def delete_comment(comment_id):
     comment = Comment.query.get(comment_id)
     db.session.delete(comment)
@@ -249,7 +249,7 @@ def delete_comment(comment_id):
 
 
 @admin_only
-@app.route("/delete/<int:post_id>")
+@app.route("/delete/<int:post_id>", methods=['GET', 'POST'])
 def delete_post(post_id):
     post_to_delete = BlogPost.query.get(post_id)
     db.session.delete(post_to_delete)
