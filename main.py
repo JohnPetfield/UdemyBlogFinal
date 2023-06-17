@@ -79,8 +79,8 @@ class Comment(db.Model):
 
 
 # this needs running once to create user table
-# with app.app_context():
-#    db.create_all()
+with app.app_context():
+   db.create_all()
 
 
 # this decorator can be placed on any route, then only users who have id of 1
